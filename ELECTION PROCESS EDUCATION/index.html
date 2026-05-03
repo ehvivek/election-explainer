@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rise of Democracy — Anti-Gravity Election Explainer</title>
+  <meta name="description" content="An immersive space journey explaining how democracy works. Every vote rises freely in a fair election — unaffected by external forces." />
+  <meta property="og:title" content="Rise of Democracy — Anti-Gravity Election Explainer" />
+  <meta property="og:description" content="In a fair election, every vote rises equally — unaffected by external forces." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════ AUDIO ═══════════════════════════════════ -->
+  <audio id="space-audio" loop preload="auto">
+    <source src="space-audio-compressed.m4a" type="audio/mp4" />
+  </audio>
+
+  <!-- ═══════════════════════════════════ NAV ═══════════════════════════════════ -->
+  <nav id="main-nav" role="navigation" aria-label="Main Navigation">
+    <div class="nav-logo">
+      <span>ANTIGRAVITY</span>
+    </div>
+    <div class="nav-links">
+      <a href="#scene1" id="nav-scene1">Origin</a>
+      <a href="#scene2" id="nav-scene2">Citizens</a>
+      <a href="#scene3" id="nav-scene3">Votes</a>
+      <a href="#scene4" id="nav-scene4">Gravity</a>
+      <a href="#scene5" id="nav-scene5">Ballot</a>
+      <a href="#scene6" id="nav-scene6">Results</a>
+    </div>
+    <div class="nav-controls">
+      <button id="audio-toggle" class="btn-icon" aria-label="Toggle audio" title="Toggle audio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07" id="audio-waves"/></svg>
+      </button>
+      <button id="reduce-motion-toggle" class="btn-icon" aria-label="Toggle reduced motion" title="Reduce motion">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════ PROGRESS BAR ═══════════════════════════ -->
+  <div id="scroll-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Scroll progress"></div>
+
+  <!-- ═══════════════════════════════════ SCENE 1: EARTH ═══════════════════════════ -->
+  <section id="scene1" class="scene scene-earth" aria-label="Scene 1: Earth — The Beginning">
+    <div class="parallax-bg" id="bg-galaxy"></div>
+    <canvas id="star-canvas" aria-hidden="true"></canvas>
+
+    <div class="scene-content scene1-content">
+      <div class="earth-container" id="earth-day-container">
+        <div class="earth-glow" aria-hidden="true"></div>
+        <img src="earth day.png" alt="Earth — birthplace of democracy" id="earth-img" class="earth-img" />
+        <div class="orbit-ring orbit-1" aria-hidden="true"></div>
+        <div class="orbit-ring orbit-2" aria-hidden="true"></div>
+        <div class="orbit-ring orbit-3" aria-hidden="true"></div>
+      </div>
+
+      <div class="scene-text scene1-text">
+        <div class="scene-label">Chapter I</div>
+        <h1 class="scene-title">Rise of<br/><span class="gradient-text">Democracy</span></h1>
+        <p class="scene-subtitle">Every vote begins here.</p>
+        <p class="scene-desc">From the heart of Earth, voices rise. Each citizen becomes a force — equal, free, and unshaken; coming together to shape a democracy where every vote truly matters. No influence can bend their path, no weight can pull them down, only the will of the people carries them forward, shaping a future grounded in fairness and truth.</p>
+        <div class="scroll-hint" aria-label="Scroll to explore">
+          <span>Scroll to Rise</span>
+          <div class="scroll-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating particles layer -->
+    <div class="particle-layer" id="scene1-particles" aria-hidden="true"></div>
+  </section>
+
+  <!-- ═══════════════════════════════════ SCENE 2: FLOATING CITIZENS ═══════════════ -->
+  <section id="scene2" class="scene scene-citizens" aria-label="Scene 2: Floating Citizens">
+    <div class="parallax-bg"></div>
+
+    <div class="scene-content scene2-content">
+      <div class="scene-text scene2-text">
+        <div class="scene-label">Chapter II</div>
+        <h2 class="scene-title">Every Citizen<br/><span class="gradient-text">A Voter</span></h2>
+        <p class="scene-desc">In a space where nothing pulls you down, every person rises equally. No voice is heavier, no one is left behind. Every citizen becomes a voter — recognized, registered, and ready to be heard.</p>
+        <div class="stat-pills">
+          <div class="stat-pill"><span class="stat-num" id="count-citizens">0</span><span>Citizens Rise</span></div>
+          <div class="stat-pill"><span class="stat-num">100%</span><span>Equal Voice</span></div>
+        </div>
+      </div>
+      <!-- Citizen particles injected by JS -->
+      <div class="citizen-field" id="citizen-field" aria-label="Floating citizen icons representing voters"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ SCENE 3: VOTES ORBIT ═══════════════════ -->
+  <section id="scene3" class="scene scene-orbit" aria-label="Scene 3: Votes Enter the System">
+    <div class="parallax-bg"></div>
+
+    <div class="scene-content scene3-content">
+      <div class="orbit-system" id="orbit-system" aria-label="Orbital ballot system — votes orbit the ballot equally">
+        <div class="orbit-center">
+          <div class="ballot-glow" aria-hidden="true"></div>
+          <img src="ballot.svg" alt="Ballot box — the center of democracy" class="ballot-center-icon" id="ballot-orbit-icon" />
+          <div class="pulse-ring" aria-hidden="true"></div>
+        </div>
+        <!-- Orbit paths + vote particles injected by JS -->
+        <div class="orbits-container" id="orbits-container" aria-hidden="true"></div>
+      </div>
+
+      <div class="scene-text scene3-text">
+        <div class="scene-label">Chapter III</div>
+        <h2 class="scene-title">Votes Enter<br/><span class="gradient-text">the System</span></h2>
+        <p class="scene-desc">Each vote enters the system and begins its orbit, moving in perfect balance around a shared centre. No vote is heavier, no vote is lighter — each follows the same path with equal value. Within this system, every voice is treated fairly, ensuring that nothing can disturb its course.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ SCENE 4: GRAVITY VS ANTI-GRAVITY ═══════════ -->
+  <section id="scene4" class="scene scene-split" aria-label="Scene 4: Gravity vs Anti-Gravity">
+    <div class="parallax-bg scene4-tint"></div>
+    <div class="split-overlay" aria-hidden="true"></div>
+
+    <div class="scene-content scene4-content">
+      <div class="scene-text scene4-header">
+        <div class="scene-label">Chapter IV</div>
+        <h2 class="scene-title"><span class="red-text">Gravity</span> vs <span class="gradient-text">Anti-Gravity</span></h2>
+        <p class="scene-desc">Every fair election faces forces that try to pull votes down.</p>
+      </div>
+
+      <div class="split-screen">
+        <!-- LEFT: CORRUPTION SIDE -->
+        <div class="split-side split-corruption" role="region" aria-label="Corruption side — gravity pulls votes down">
+          <div class="side-header">
+            <div class="side-badge badge-red">✗ CORRUPTION</div>
+            <h3 class="side-title">Gravity</h3>
+          </div>
+          <div class="corruption-icons">
+            <div class="corruption-icon-wrap" id="corr-money">
+              <img src="money.svg" alt="Bribery" class="corr-icon money-icon" />
+              <span class="icon-label">Bribery</span>
+            </div>
+            <div class="corruption-icon-wrap" id="corr-warning">
+              <img src="warning.svg" alt="Fake news" class="corr-icon warning-icon" />
+              <span class="icon-label">Fake News</span>
+            </div>
+            <div class="corruption-icon-wrap" id="corr-pressure">
+              <img src="warning.svg" alt="Voter pressure" class="corr-icon warning-icon warn2" />
+              <span class="icon-label">Pressure</span>
+            </div>
+          </div>
+          <div class="falling-votes" id="falling-votes" aria-hidden="true"></div>
+          <div class="side-desc">
+            <p>External forces <strong>pull your vote down</strong> — bribery, misinformation, and intimidation corrupt the democratic process.</p>
+          </div>
+        </div>
+
+        <!-- RIGHT: FAIR DEMOCRACY SIDE -->
+        <div class="split-side split-fair" role="region" aria-label="Fair election side — votes rise freely">
+          <div class="side-header">
+            <div class="side-badge badge-blue">✓ FAIR ELECTION</div>
+            <h3 class="side-title">Anti-Gravity</h3>
+          </div>
+          <div class="rising-votes-container" id="rising-votes" aria-hidden="true"></div>
+          <div class="fair-icons">
+            <div class="fair-icon-wrap">
+              <img src="user.svg" alt="Free voter" class="fair-icon" />
+              <span class="icon-label">Free Voter</span>
+            </div>
+            <div class="fair-icon-wrap">
+              <img src="ballot.svg" alt="Fair ballot" class="fair-icon ballot-fair" />
+              <span class="icon-label">Fair Ballot</span>
+            </div>
+          </div>
+          <div class="side-desc">
+            <p>In a fair system, votes <strong>rise freely</strong> — unaffected by money, power, or manipulation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ SCENE 5: BALLOT BOX ═══════════════════════ -->
+  <section id="scene5" class="scene scene-ballot" aria-label="Scene 5: Ballot Box — Every Vote Counted">
+    <div class="parallax-bg"></div>
+
+    <div class="scene-content scene5-content">
+      <div class="scene-text scene5-text">
+        <div class="scene-label">Chapter V</div>
+        <h2 class="scene-title">Every Vote<br/><span class="gradient-text">Counted</span></h2>
+        <p class="scene-desc">Cast with courage and protected by the system, each vote reaches its destination. Gently and without bias, it finds its place in the ballot — equal in weight, equal in power. Every voice is counted with care, preserving the true will of the people.</p>
+      </div>
+
+      <div class="ballot-stage" id="ballot-stage">
+        <div class="big-ballot-glow" aria-hidden="true"></div>
+        <div class="vote-funnel" id="vote-funnel" aria-hidden="true"></div>
+        <img src="ballot.svg" alt="The central ballot box receiving all votes" class="big-ballot-icon" id="big-ballot" />
+        <div class="light-burst" id="light-burst" aria-hidden="true"></div>
+        <div class="vote-counter-display">
+          <span id="vote-count-display">0</span>
+          <span class="vote-counter-label">Votes Cast</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ SCENE 6: RESULTS ═══════════════════════════ -->
+  <section id="scene6" class="scene scene-results" aria-label="Scene 6: Results — The People's Choice">
+    <div class="parallax-bg"></div>
+
+    <div class="scene-content scene6-content">
+      <div class="scene-text scene6-header">
+        <div class="scene-label">Chapter VI</div>
+        <h2 class="scene-title">The People's<br/><span class="gradient-text">Choice</span></h2>
+        <p class="scene-desc">Results rise from the people — not from power, not from money. Democracy speaks.</p>
+      </div>
+
+      <div class="results-viz" id="results-viz" aria-label="Election results visualization">
+        <div class="bar-chart" id="bar-chart">
+          <div class="bar-item" data-value="78" data-color="#00D4FF">
+            <div class="bar-fill" id="bar1"></div>
+            <div class="bar-label">Candidate A</div>
+            <div class="bar-value">78%</div>
+          </div>
+          <div class="bar-item" data-value="55" data-color="#7B61FF">
+            <div class="bar-fill" id="bar2"></div>
+            <div class="bar-label">Candidate B</div>
+            <div class="bar-value">55%</div>
+          </div>
+          <div class="bar-item" data-value="42" data-color="#00FFB3">
+            <div class="bar-fill" id="bar3"></div>
+            <div class="bar-label">Candidate C</div>
+            <div class="bar-value">42%</div>
+          </div>
+          <div class="bar-item" data-value="31" data-color="#FF6B9D">
+            <div class="bar-fill" id="bar4"></div>
+            <div class="bar-label">Candidate D</div>
+            <div class="bar-value">31%</div>
+          </div>
+        </div>
+        <div class="result-particles" id="result-particles" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ FINAL MESSAGE ═══════════════════════════ -->
+  <section id="scene-final" class="scene scene-finale" aria-label="Final message">
+    <div class="parallax-bg"></div>
+    <div class="finale-content">
+      <div class="finale-earth-wrap">
+        <img src="earth night .png" alt="Earth at night — the democratic planet" class="finale-earth" id="finale-earth" />
+        <div class="finale-earth-glow" aria-hidden="true"></div>
+      </div>
+      <blockquote class="finale-quote" id="finale-quote">
+        <span class="quote-line">"Democracy works best</span>
+        <span class="quote-line">when <em class="gradient-text">nothing</em> pulls</span>
+        <span class="quote-line">your vote down."</span>
+      </blockquote>
+      <p class="finale-sub">Protect your vote. Protect the future.</p>
+      <div class="sanskrit-slogan" lang="sa" aria-label="Sanskrit slogan: No one is great, no one is small — all votes are equal">
+        <span class="sanskrit-text">न कश्चित् गुरुः, न कश्चित् लघुः</span>
+        <span class="sanskrit-sep">~</span>
+        <span class="sanskrit-translation">सर्वे मताः समानाः</span>
+      </div>
+      <div class="finale-icons" aria-hidden="true">
+        <img src="user.svg" alt="" class="finale-icon fi-user" />
+        <img src="ballot.svg" alt="" class="finale-icon fi-ballot" />
+        <img src="user.svg" alt="" class="finale-icon fi-user2" />
+      </div>
+      <a href="#scene1" class="btn-restart" id="btn-restart">↑ Begin Again</a>
+    </div>
+    <!-- Confetti / particle celebration -->
+    <div class="finale-particles" id="finale-particles" aria-hidden="true"></div>
+  </section>
+
+  <!-- ═══════════════════════════════════ FOOTER — CREATED BY VIVEK ═══════════════════ -->
+  <footer id="contact" class="site-footer" aria-label="Creator and contact">
+    <div class="footer-inner">
+
+      <!-- Creator Badge -->
+      <div class="creator-badge">
+        <div class="creator-avatar" aria-hidden="true">V</div>
+        <div class="creator-info">
+          <span class="creator-label">Created by</span>
+          <span class="creator-name">Vivek Kumar</span>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="footer-divider" aria-hidden="true"></div>
+
+      <!-- Contact Links -->
+      <div class="contact-links" role="navigation" aria-label="Contact Vivek">
+        <a href="https://www.linkedin.com/in/vivekk52/" target="_blank" rel="noopener noreferrer" class="contact-btn contact-linkedin" id="btn-linkedin" aria-label="Connect on LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor" class="contact-icon" aria-hidden="true">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+          <span>LinkedIn</span>
+        </a>
+
+        <a href="https://github.com/ehvivek" target="_blank" rel="noopener noreferrer" class="contact-btn contact-github" id="btn-github" aria-label="View GitHub profile">
+          <svg viewBox="0 0 24 24" fill="currentColor" class="contact-icon" aria-hidden="true">
+            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+          </svg>
+          <span>GitHub</span>
+        </a>
+      </div>
+
+      <!-- Footer Note -->
+      <p class="footer-note">PromptWars 2026</p>
+
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════ ACCESSIBILITY CAPTION BAR ═══════════════════ -->
+  <div id="caption-bar" class="caption-bar" role="status" aria-live="polite" aria-label="Scene description"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
